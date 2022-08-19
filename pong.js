@@ -12,6 +12,16 @@ const user = {
     score: 0
 }
 
+//create the computer paddle
+const comp = {
+    x: cvs.width - 10,
+    y: cvs.height/2 - 100/2,
+    width: 10,
+    height: 100,
+    color: "white",
+    score: 0
+}
+
 //draw rectangle
 function drawRect(x, y, w, h, color) {
   ctx.fillStyle = color;
