@@ -24,11 +24,14 @@ const comp = {
 
 //create the ball
 const ball = {
-    x: cvs.width/2,
-    y: cvs.height/2,
-    radius: 10,
-    color: "white"
-}
+  x: cvs.width / 2,
+  y: cvs.height / 2,
+  radius: 10,
+  speed: 5,
+  velocityX: 5,
+  velocityY: 5,
+  color: "white",
+};
 
 //draw rectangle
 function drawRect(x, y, w, h, color) {
