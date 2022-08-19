@@ -33,15 +33,29 @@ const ball = {
   color: "white",
 };
 
+//create the net
+const net = {
+    x: cvs.width/2 - 1,
+    y: 0,
+    width: 2,
+    height: 10,
+    color: "white"
+}
+
+//draw the net
+function drawNet(){
+    for (let i = 0; i < cvs.height; i+=15) {
+        drawRect(net.x, net.y + i, net.width, net.height, net.color);
+    }
+}
+
 //draw rectangle
 function drawRect(x, y, w, h, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, w, h);
 }
 
-drawRect(0, 0, cvs.width, cvs.height, "black");
-
-//draw rectangle
+//draw circle
 function drawCircle(x, y, r, color){
     ctx.fillStyle = color;
     ctx.beginPath();
@@ -50,8 +64,6 @@ function drawCircle(x, y, r, color){
     ctx.fill();
 }
 
-drawCircle(150, 150, 50, "white");
-
 //drawing the text
 function drawText(x, y, text, color){
     ctx.fillStyle = color;
@@ -59,4 +71,5 @@ function drawText(x, y, text, color){
     ctx.fillText(text, x, y);
 }
 
-drawText(100, 300, "Bro do yo even code?", "white");
+
+
