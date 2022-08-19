@@ -91,10 +91,45 @@ function render() {
   drawCircle(ball.x, ball.y, ball.radius, ball.color);
 }
 
+//control the user paddle
+cvs.addEventListener("mousemove", movePaddle);
+
+function movePaddle(evt){
+    let rect = cvs.getBoundingClientRect();
+
+    user.y = evt.clientY - rect.top - user.height/2;
+}
+
+//collision detection 
+function collision(b, p){
+    b.top = b.y - b.radius;
+    b.bottom = b.y + b.radius;
+    b.left = b.x - b.radius;
+    b.right = b.x + b.radius;
+
+    p.top = p.y;
+    p.bottom = p.y + p.height;
+    p.left = p.x;
+    p.right = p.x + p.width;
+
+    return b.right > p.left && b.bottom > p.top && b.left < p.right && b.top < p.bottom;
+}
+
 //update: pos, mov, score...
 function update() {
   ball.x += ball.velocityX;
   ball.y += ball.velocityY; 
+
+  if (ball.y + ball.radius > cvs.height || ball.y - ball.radius < 0) {
+    ball.velocityY = -ball.velocityY;
+  }
+
+  let player = (ball.x < cvs.width/2) ? user : comp;
+
+  if(collision(ball, player)){
+
+  }
+
 }
 
 //game init
