@@ -20,3 +20,12 @@ function drawCircle(x, y, r, color){
 }
 
 drawCircle(150, 150, 50, "white");
+
+//drawing the text
+function drawText(x, y, text, color){
+    ctx.fillStyle = color;
+    ctx.font = "45px fantasy";
+    ctx.fillText(text, x, y);
+}
+
+drawText(100, 300, "Bro do yo even code?", "white");
