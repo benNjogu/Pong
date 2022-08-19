@@ -115,6 +115,15 @@ function collision(b, p){
     return b.right > p.left && b.bottom > p.top && b.left < p.right && b.top < p.bottom;
 }
 
+//reset ball
+function resetBall(){
+    ball.x = cvs.width/2;
+    ball.y = cvs.height/2;
+
+    ball.speed = 5;
+    ball.velocityX = -ball.velocityX;
+}
+
 //update: pos, mov, score...
 function update() {
   ball.x += ball.velocityX;
@@ -131,7 +140,37 @@ function update() {
   let player = ball.x < cvs.width / 2 ? user : comp;
 
   if (collision(ball, player)) {
+    //where the ball hit the player
+    let collidePoint = ball.y - (player.y + player.height/2);
+
+    //normalization
+    collidePoint = collidePoint / (player.height / 2);
+
+    //calculate angle in radian
+    let angleRad = (collidePoint * Math.PI) / 4;
+
+    //X direction of the ball when its hit
+    let direction = ball.x < cvs.width / 2 ? 1 : -1;
+
+    //Change velocity X and Y
+    ball.velocityX = direction * ball.speed * Math.cos(angleRad);
+    ball.velocityY = ball.speed * Math.sin(angleRad);
+
+    //increase speed everytime a ball is hit by a paddle
+    ball.speed += 0.5;
   }
+
+  //update the score
+  if(ball.x - ball.radius < 0){
+    //the comp wins
+    comp.score++;
+    resetBall();
+  }else if(ball.x + ball.radius > cvs.width){
+    //the player wins
+    user.score++;
+    resetBall();
+  }
+
 }
 
 //game init
