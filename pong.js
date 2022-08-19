@@ -71,5 +71,34 @@ function drawText(x, y, text, color){
     ctx.fillText(text, x, y);
 }
 
+//render the game
+function render() {
+  //clear the canvas
+  drawRect(0, 0, cvs.width, cvs.height, "black");
 
+  //draw the net
+  drawNet();
+
+  //draw the score
+  drawText(cvs.width / 4, cvs.height / 5, user.score, "white");
+  drawText((3 * cvs.width) / 4, cvs.height / 5, comp.score, "white");
+
+  //draw the paddles
+  drawRect(user.x, user.y, user.width, user.height, user.color);
+  drawRect(comp.x, comp.y, comp.width, comp.height, comp.color);
+
+  //draw the ball
+  drawCircle(ball.x, ball.y, ball.radius, ball.color);
+
+
+}
+
+//game init
+function game(){
+    render();
+}
+
+//loop
+const framePerSecond = 50;
+setInterval(game, 1000/framePerSecond);
 
