@@ -118,18 +118,20 @@ function collision(b, p){
 //update: pos, mov, score...
 function update() {
   ball.x += ball.velocityX;
-  ball.y += ball.velocityY; 
+  ball.y += ball.velocityY;
+
+  //Simple AI to control the comp paddle
+  let computerLevel = 0.1;
+  comp.y += (ball.y - (comp.y + comp.height / 2)) * computerLevel;
 
   if (ball.y + ball.radius > cvs.height || ball.y - ball.radius < 0) {
     ball.velocityY = -ball.velocityY;
   }
 
-  let player = (ball.x < cvs.width/2) ? user : comp;
+  let player = ball.x < cvs.width / 2 ? user : comp;
 
-  if(collision(ball, player)){
-
+  if (collision(ball, player)) {
   }
-
 }
 
 //game init
