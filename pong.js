@@ -22,6 +22,14 @@ const comp = {
     score: 0
 }
 
+//create the ball
+const ball = {
+    x: cvs.width/2,
+    y: cvs.height/2,
+    radius: 10,
+    color: "white"
+}
+
 //draw rectangle
 function drawRect(x, y, w, h, color) {
   ctx.fillStyle = color;
