@@ -2,6 +2,16 @@
 const cvs = document.getElementById("pong");
 const ctx = cvs.getContext("2d");
 
+//create the user paddle
+const user = {
+    x: 0,
+    y: cvs.height/2 - 100/2,
+    width: 10,
+    height: 100,
+    color: "white",
+    score: 0
+}
+
 //draw rectangle
 function drawRect(x, y, w, h, color) {
   ctx.fillStyle = color;
