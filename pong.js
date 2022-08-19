@@ -89,13 +89,18 @@ function render() {
 
   //draw the ball
   drawCircle(ball.x, ball.y, ball.radius, ball.color);
+}
 
-
+//update: pos, mov, score...
+function update() {
+  ball.x += ball.velocityX;
+  ball.y += ball.velocityY; 
 }
 
 //game init
-function game(){
-    render();
+function game() {
+  update();
+  render();
 }
 
 //loop
